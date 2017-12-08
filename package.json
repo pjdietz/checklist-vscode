@@ -1,0 +1,26 @@
+{
+    "name": "checklist",
+    "displayName": "Checklist",
+    "description": "Checklist syntax",
+    "version": "0.0.1",
+    "publisher": "pj-dietz",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "checklist",
+            "aliases": ["Checklist", "checklist"],
+            "extensions": ["todo"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "checklist",
+            "scopeName": "text.checklist",
+            "path": "./syntaxes/checklist.tmLanguage.json"
+        }]
+    }
+}
