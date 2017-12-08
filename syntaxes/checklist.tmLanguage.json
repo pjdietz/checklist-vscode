@@ -1,32 +1,106 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Checklist",
+	"scopeName": "text.checklist",
+	"fileTypes": [
+		"todo",
+		"checklist"
+	],
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#comments"
 		},
 		{
-			"include": "#strings"
+			"comment": "[ ] Open Task",
+			"match": "(\\[ \\])(.*?)((//|\n).*)",
+			"name": "keyword.task.open.checklist",
+			"captures": {
+				"1": {
+					"name": "support.function.checklist"
+				},
+				"2": {
+					"name": "support.function.checklist"
+				},
+				"3": {
+						"name": "comment.line.checklist"
+				}
+			}
+		},
+		{
+			"comment": "[X] Completed Task",
+			"match": "(\\[[Xx]\\])(.*?)((//|\n).*)",
+			"name": "completed.task.checklist",
+			"captures": {
+				"1": {
+					"name": "keyword.operator.checklist"
+				},
+				"2": {
+					"name": "keyword.operator.checklist"
+				},
+				"3": {
+						"name": "comment.line.checklist"
+				}
+			}
+		},
+		{
+			"comment": "[>] Active Task",
+			"match": "(\\[>\\])(.*?)((//|\n).*)",
+			"name": "keyword.task.active.checklist",
+			"captures": {
+				"1": {
+					"name": "string.quoted.checklist"
+				},
+				"2": {
+					"name": "string.quoted.checklist"
+				},
+				"3": {
+						"name": "comment.line.checklist"
+				}
+			}
+		},
+		{
+				"comment": "[!] Urgent Task",
+				"match": "(\\[!\\])(.*?)((//|\n).*)",
+				"name": "keyword.todo.task.urgent",
+				"captures": {
+					"1": {
+						"name": "invalid.illegal.checklist"
+					},
+					"2": {
+						"name": "invalid.illegal.checklist"
+					},
+					"3": {
+							"name": "comment.line.checklist"
+					}
+				}
+		},
+		{
+				"comment": "[-] Deferred Task",
+				"match": "(\\[-\\])(.*?)((//|\n).*)",
+				"name": "constant.numeric.todo.task.deferred",
+				"captures": {
+					"1": {
+						"name": "invalid.deprecated.checklist"
+					},
+					"2": {
+						"name": "invalid.deprecated.checklist"
+					},
+					"3": {
+							"name": "comment.line.checklist"
+					}
+				}
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.checklist",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.checklist",
-			"begin": "\"",
-			"end": "\"",
+		"comments": {
 			"patterns": [
-				{
-					"name": "constant.character.escape.checklist",
-					"match": "\\\\."
-				}
+					{
+							"comment": "// double-slash line comment",
+							"begin": "//",
+							"end": "\\n",
+							"name": "comment.line.double-slash.checklist"
+					}
 			]
 		}
-	},
-	"scopeName": "text.checklist"
+	}
 }
